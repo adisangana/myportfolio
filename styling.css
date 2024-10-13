@@ -18,7 +18,7 @@ body {
 }
 
 header {
-    background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+    background: url('https://res.cloudinary.com/dg5ir1kvd/image/fetch/f_auto,fl_advanced_resize,c_fill,w_720,h_253/https://www.ccu.edu/blogs/cags/uploads/2019/08/shutterstock_116443600_cropped.jpg?v=1716307654445') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
