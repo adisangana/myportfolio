@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styling.css">
+    <!-- AOS Animate on Scroll Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <header id="home">
@@ -23,12 +27,12 @@
         </div>
     </header>
 
-    <section id="about">
+    <section id="about" data-aos="fade-up">
         <h2>About Me</h2>
         <p>A brief introduction about yourself...</p>
     </section>
 
-    <section id="portfolio">
+    <section id="portfolio" data-aos="fade-up">
         <h2>My Work</h2>
         <div class="projects">
             <!-- Add your projects here -->
@@ -40,7 +44,7 @@
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" data-aos="fade-up">
         <h2>Contact Me</h2>
         <form>
             <input type="text" placeholder="Name">
@@ -53,5 +57,11 @@
     <footer>
         <p>© 2024 Your Name</p>
     </footer>
+
+    <!-- AOS Animate on Scroll Library -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
