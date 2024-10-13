@@ -5,95 +5,99 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Helvetica Neue', sans-serif;
     color: #333;
-}
-
-/* Navigation Bar */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-}
-
-nav ul {
-    list-style: none;
+    background-color: #f4f4f4;
     display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Navigation Styling */
+.side-nav {
+    background-color: #333;
+    width: 20%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 15px;
 }
 
-nav ul li {
-    margin: 0 20px;
+.side-nav ul {
+    list-style: none;
+    padding: 0;
 }
 
-nav ul li a {
+.side-nav ul li {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.side-nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #1abc9c; /* Teal on hover */
+.side-nav ul li a:hover {
+    color: #1abc9c; /* Add a subtle hover effect */
 }
 
-/* Hero Section */
-.hero {
-    height: 100vh;
-    background: url('path-to-your-background-image.jpg') no-repeat center center/cover; /* Add your background image */
+/* Main Content Styling */
+.main-content {
+    flex: 1;
+    padding: 40px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: left;
+    background-color: #fff;
 }
 
-.hero-content h1 {
+.main-content h1 {
     font-size: 64px;
-    color: white;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-.hero-content p {
-    font-size: 24px;
-    color: #f0f0f0;
+    font-weight: 700;
     margin-bottom: 20px;
 }
 
-.hero-content .btn {
-    background-color: #1abc9c;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 25px;
-    text-decoration: none;
+.main-content p {
     font-size: 18px;
-    transition: background-color 0.3s ease;
+    line-height: 1.6;
+    color: #333;
 }
 
-.hero-content .btn:hover {
-    background-color: #16a085;
+/* Monochrome color palette for minimalist feel */
+body {
+    background-color: #f7f7f7;
+}
+
+.side-nav {
+    background-color: #000;
+}
+
+.side-nav ul li a:hover {
+    color: #e74c3c; /* Red for hover effects, if you want a bold color */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .hero-content h1 {
+    .main-content h1 {
         font-size: 48px;
     }
 
-    .hero-content p {
-        font-size: 20px;
+    .side-nav {
+        width: 30%;
+        min-width: 150px;
     }
-
-    nav ul {
-        flex-direction: column;
-    }
+}
+#sketch-holder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Send the animation behind your main content */
 }
