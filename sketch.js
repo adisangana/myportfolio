@@ -25,28 +25,35 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 
-// Particle class
+// Particle class for particles that either circle around the mouse or move freely
 class Particle {
     constructor() {
         // Initial position and velocity of particles
         this.pos = createVector(random(width), random(height));
-        this.vel = createVector(random(-2, 2), random(-2, 2));
+        this.vel = createVector(random(-1, 1), random(-1, 1)); // Slower velocity for subtle movement
         this.acc = createVector(0, 0);
-        this.size = random(3, 10); // Reduced particle size for finer particles
+        this.size = random(2, 7); // Small particle size for fine dust-like effect
         this.angle = random(TWO_PI); // Angle for circular movement
-        this.distance = random(50, 150); // Distance from the mouse
+        this.distance = random(100, 300); // Distance from the mouse for the general movement
+        this.isNearMouse = false; // To detect if the particle is near the mouse
     }
 
     update() {
-        // Apply acceleration to velocity
-        this.vel.add(this.acc);
-        this.vel.limit(4); // Limit the speed
+        // Apply velocity to position
         this.pos.add(this.vel);
-
+        
         // Reset acceleration each frame
         this.acc.mult(0);
 
-        // Reverse direction if the particle hits the edges
+        // Check if particle is near the mouse
+        let d = dist(this.pos.x, this.pos.y, mouseX, mouseY);
+        if (d < 150) { // Near the mouse
+            this.isNearMouse = true;
+        } else {
+            this.isNearMouse = false;
+        }
+
+        // Bounce particles at the edges
         if (this.pos.x > width || this.pos.x < 0) {
             this.vel.x *= -1;
         }
@@ -55,18 +62,20 @@ class Particle {
         }
     }
 
+    // Circle around the mouse if close, otherwise move naturally
     circleAroundMouse() {
-        // Create circular motion around the mouse
-        let mouse = createVector(mouseX, mouseY);
-        
-        // Increment angle for circular motion
-        this.angle += 0.05; // Adjust speed of circular motion
-        let offsetX = cos(this.angle) * this.distance; // X offset for circular motion
-        let offsetY = sin(this.angle) * this.distance; // Y offset for circular motion
-        
-        // Set particle position around the mouse
-        this.pos.x = mouse.x + offsetX;
-        this.pos.y = mouse.y + offsetY;
+        if (this.isNearMouse) {
+            // If the particle is near the mouse, orbit in a very tight radius
+            this.angle += 0.1; // Adjust speed of circular motion
+            let offsetX = cos(this.angle) * 20; // Very small radius around the mouse (20 pixels)
+            let offsetY = sin(this.angle) * 20;
+
+            this.pos.x = mouseX + offsetX;
+            this.pos.y = mouseY + offsetY;
+        } else {
+            // Particles not near the mouse move naturally
+            this.pos.add(this.vel);
+        }
     }
 
     show() {
