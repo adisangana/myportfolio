@@ -11,8 +11,8 @@ html {
 
 body {
     font-family: 'Helvetica Neue', sans-serif;
-    color: #333;
-    background-color: #f7f7f7;
+    color: #000; /* Black text */
+    background-color: #f0f0f0; /* Light gray background */
     height: 100vh;
     overflow-x: hidden;
 }
@@ -106,13 +106,12 @@ body {
     font-size: 72px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: white;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    color: black; /* Black text */
 }
 
 .hero-content p {
     font-size: 24px;
-    color: #e0e0e0;
+    color: #333; /* Dark gray text */
     margin-bottom: 30px;
 }
 
