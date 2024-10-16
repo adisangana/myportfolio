@@ -4,7 +4,7 @@ function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('sketch-holder');
 
-    // Create a larger set of smaller particles
+    // Double the particle count
     for (let i = 0; i < 300; i++) {
         particles.push(new Particle());
     }
@@ -16,7 +16,7 @@ function draw() {
     // Update and display all particles
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
-        particles[i].circleAroundMouse();
+        particles[i].repelFromMouse();
         particles[i].show();
     }
 }
@@ -25,33 +25,24 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 
-// Particle class for particles that either circle around the mouse or move freely
+// Particle class
 class Particle {
     constructor() {
         // Initial position and velocity of particles
         this.pos = createVector(random(width), random(height));
-        this.vel = createVector(random(-1, 1), random(-1, 1)); // Slower velocity for subtle movement
+        this.vel = createVector(random(-1, 1), random(-1, 1)); // Slow, natural movement
         this.acc = createVector(0, 0);
-        this.size = random(2, 7); // Small particle size for fine dust-like effect
-        this.angle = random(TWO_PI); // Angle for circular movement
-        this.distance = random(100, 300); // Distance from the mouse for the general movement
-        this.isNearMouse = false; // To detect if the particle is near the mouse
+        this.size = random(2, 7); // Smaller particles for fine dust effect
     }
 
     update() {
         // Apply velocity to position
+        this.vel.add(this.acc);
+        this.vel.limit(2); // Limit speed for natural movement
         this.pos.add(this.vel);
-        
+
         // Reset acceleration each frame
         this.acc.mult(0);
-
-        // Check if particle is near the mouse
-        let d = dist(this.pos.x, this.pos.y, mouseX, mouseY);
-        if (d < 150) { // Near the mouse
-            this.isNearMouse = true;
-        } else {
-            this.isNearMouse = false;
-        }
 
         // Bounce particles at the edges
         if (this.pos.x > width || this.pos.x < 0) {
@@ -62,19 +53,17 @@ class Particle {
         }
     }
 
-    // Circle around the mouse if close, otherwise move naturally
-    circleAroundMouse() {
-        if (this.isNearMouse) {
-            // If the particle is near the mouse, orbit in a very tight radius
-            this.angle += 0.1; // Adjust speed of circular motion
-            let offsetX = cos(this.angle) * 20; // Very small radius around the mouse (20 pixels)
-            let offsetY = sin(this.angle) * 20;
+    // Slightly repel particles from the mouse
+    repelFromMouse() {
+        let mouse = createVector(mouseX, mouseY);
+        let force = p5.Vector.sub(this.pos, mouse); // Vector pointing away from the mouse
+        let distance = force.mag(); // Get distance between particle and mouse
 
-            this.pos.x = mouseX + offsetX;
-            this.pos.y = mouseY + offsetY;
-        } else {
-            // Particles not near the mouse move naturally
-            this.pos.add(this.vel);
+        // Only apply repulsion if the particle is within a certain distance
+        if (distance < 100) {
+            let strength = map(distance, 0, 100, 5, 0); // Repel stronger when closer
+            force.setMag(strength); // Set the strength of the repulsion
+            this.acc.add(force); // Apply repulsion force
         }
     }
 
