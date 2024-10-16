@@ -5,7 +5,7 @@ function setup() {
     canvas.parent('sketch-holder');
 
     // Double the particle count
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 1500; i++) {
         particles.push(new Particle());
     }
 }
