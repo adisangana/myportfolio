@@ -4,8 +4,8 @@ function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('sketch-holder');
 
-    // Create an initial set of particles
-    for (let i = 0; i < 150; i++) {
+    // Create a larger set of smaller particles
+    for (let i = 0; i < 300; i++) {
         particles.push(new Particle());
     }
 }
@@ -16,7 +16,7 @@ function draw() {
     // Update and display all particles
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
-        particles[i].attractToMouse();
+        particles[i].circleAroundMouse();
         particles[i].show();
     }
 }
@@ -32,14 +32,15 @@ class Particle {
         this.pos = createVector(random(width), random(height));
         this.vel = createVector(random(-2, 2), random(-2, 2));
         this.acc = createVector(0, 0);
-        this.size = random(5, 15);
-        this.maxSpeed = 4;
+        this.size = random(3, 10); // Reduced particle size for finer particles
+        this.angle = random(TWO_PI); // Angle for circular movement
+        this.distance = random(50, 150); // Distance from the mouse
     }
 
     update() {
         // Apply acceleration to velocity
         this.vel.add(this.acc);
-        this.vel.limit(this.maxSpeed);
+        this.vel.limit(4); // Limit the speed
         this.pos.add(this.vel);
 
         // Reset acceleration each frame
@@ -54,16 +55,18 @@ class Particle {
         }
     }
 
-    attractToMouse() {
+    circleAroundMouse() {
+        // Create circular motion around the mouse
         let mouse = createVector(mouseX, mouseY);
-        let force = p5.Vector.sub(this.pos, mouse); // Repel particles from mouse
-
-        let distance = force.mag();
-        distance = constrain(distance, 10, 200); 
-        let strength = (1 / (distance * distance)) * 1000; 
-        force.setMag(strength);
-
-        this.acc.add(force);
+        
+        // Increment angle for circular motion
+        this.angle += 0.05; // Adjust speed of circular motion
+        let offsetX = cos(this.angle) * this.distance; // X offset for circular motion
+        let offsetY = sin(this.angle) * this.distance; // Y offset for circular motion
+        
+        // Set particle position around the mouse
+        this.pos.x = mouse.x + offsetX;
+        this.pos.y = mouse.y + offsetY;
     }
 
     show() {
