@@ -11,81 +11,45 @@ html {
 
 body {
     font-family: 'Helvetica Neue', sans-serif;
-    color: #000; /* Black text */
-    background-color: #f0f0f0; /* Light gray background */
+    color: #333;
+    background-color: #f7f7f7;
     height: 100vh;
     overflow-x: hidden;
 }
 
-/* Updated Sidebar Styling (Minimalistic like the image) */
+/* Sticky Sidebar Styling */
 .side-nav {
-    background-color: transparent; /* No background color */
+    background-color: #2c3e50; /* Dark blue-gray background */
     width: 15%;
     min-width: 200px;
-    padding: 30px 10px;
-    position: -webkit-sticky;
+    padding: 20px 10px;
+    position: -webkit-sticky; /* For Safari */
     position: sticky;
-    top: 0;
+    top: 0; /* Sticks the sidebar at the top as you scroll */
     height: 100vh; /* Full height of viewport */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    font-family: 'Helvetica Neue', sans-serif;
+    border-right: 2px solid #1abc9c;
 }
 
 .side-nav ul {
     list-style: none;
-    padding: 0;
 }
 
 .side-nav ul li {
     margin: 20px 0;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    position: relative;
-    text-align: left;
-    font-weight: 700;
 }
 
-/* Add a small dot or bullet between sections */
-.side-nav ul li::before {
-    content: "•";
-    position: absolute;
-    left: -20px; /* Position the bullet to the left */
-    font-size: 20px; /* Bullet size */
-    color: #000; /* Black bullet for subtle contrast */
-}
-
-/* Sidebar Links */
 .side-nav ul li a {
-    color: #000; /* Simple black text */
+    color: #ecf0f1;
     text-decoration: none;
     transition: color 0.3s ease;
     display: block;
 }
 
 .side-nav ul li a:hover {
-    color: #1abc9c; /* Teal hover effect */
-}
-
-/* Style for light/dark/monospaced toggle options */
-.sidebar-options {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 14px;
-}
-
-.sidebar-options span {
-    cursor: pointer;
-    margin: 10px 0;
-    color: #333;
-}
-
-.sidebar-options span:hover {
     color: #1abc9c;
 }
 
@@ -106,12 +70,13 @@ body {
     font-size: 72px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: black; /* Black text */
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .hero-content p {
     font-size: 24px;
-    color: #333; /* Dark gray text */
+    color: #e0e0e0;
     margin-bottom: 30px;
 }
 
@@ -147,6 +112,10 @@ body {
     font-size: 20px;
     line-height: 1.6;
     color: #555;
+}
+
+.project {
+    margin-bottom: 30px;
 }
 
 /* Background Animation Canvas */
