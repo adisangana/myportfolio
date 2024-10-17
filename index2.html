@@ -12,20 +12,38 @@
     <!-- Left-Aligned Navigation -->
     <nav class="side-nav">
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" onclick="showSection('home')">Home</a></li>
+            <li><a href="#about" onclick="showSection('about')">About</a></li>
+            <li><a href="#projects" onclick="showSection('projects')">Projects</a></li>
+            <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
             <li><a href="https://adisangana.github.io/myportfolio/#home">Portfolio 1.0</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
+    <!-- Hero Section (content will be dynamically replaced here) -->
+    <section id="content" class="hero">
+        <div id="home" class="hero-content active">
             <h1>Aditya Sangana</h1>
             <p>Designing creative digital experiences</p>
-            <a href="#projects" class="btn">View My Work</a>
+            <a href="#projects" class="btn" onclick="showSection('projects')">View My Work</a>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="hero-content hidden">
+            <h1>About Me</h1>
+            <p>I'm Aditya Sangana, a passionate developer who specializes in designing creative and intuitive digital experiences.</p>
+        </div>
+
+        <!-- Projects Section -->
+        <div id="projects" class="hero-content hidden">
+            <h1>My Projects</h1>
+            <p>Explore some of the exciting projects I've worked on, including interactive web designs and stock price predictions.</p>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="hero-content hidden">
+            <h1>Contact Me</h1>
+            <p>If you'd like to get in touch, feel free to reach out via email or through the contact form.</p>
         </div>
     </section>
 
@@ -33,6 +51,26 @@
     <div id="sketch-holder"></div>
 
     <script src="sketch.js"></script>
+    <script>
+        // Function to switch sections dynamically
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.hero-content');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.add('active');
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                    section.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize with Home section as active
+        document.addEventListener("DOMContentLoaded", function() {
+            showSection('home'); // Start with Home section active
+        });
+    </script>
 
 </body>
 </html>

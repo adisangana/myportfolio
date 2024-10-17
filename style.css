@@ -70,6 +70,19 @@ body {
     background-color: transparent;
     padding: 0 20px;
     margin-left: 15%; /* Offset the content by the sidebar width */
+    position: relative;
+}
+
+.hero-content {
+    display: none;
+}
+
+.hero-content.active {
+    display: block; /* Show the active section */
+}
+
+.hero-content.hidden {
+    display: none; /* Hide the inactive sections */
 }
 
 .hero-content h1 {
