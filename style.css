@@ -2,31 +2,32 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 30px; /* Increased spacing between project cards */
     padding: 20px;
 }
 
 .project-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px); /* Adds a frosted glass effect */
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque for better readability */
+    backdrop-filter: blur(5px); /* Reduced blur for clarity */
     border-radius: 15px;
-    padding: 20px;
-    width: 300px;
+    padding: 25px;
+    width: 320px; /* Increased width slightly */
     color: #fff;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
 }
 
 .project-card h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 26px; /* Slightly larger project title */
+    margin-bottom: 15px;
     color: #1abc9c; /* Accent color for the project title */
 }
 
 .project-card p {
-    font-size: 16px;
+    font-size: 18px; /* Increased readability */
     margin-bottom: 15px;
-    line-height: 1.5;
+    line-height: 1.6; /* Improved line height for readability */
 }
 
 .project-card .btn {
@@ -44,7 +45,7 @@
 
 .project-card:hover {
     transform: translateY(-10px); /* Lift effect on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Slightly more prominent shadow on hover */
 }
 
 /* Responsive Design for Projects */
@@ -55,7 +56,6 @@
     }
 
     .project-card {
-        width: 100%;
-        max-width: 500px;
+        width: 90%; /* Make project cards take up more space on smaller screens */
     }
 }
