@@ -22,6 +22,7 @@
 
     <!-- Main Content Section -->
     <section id="content" class="hero">
+        <!-- Home Section -->
         <div id="home" class="hero-content active">
             <h1>Aditya Sangana</h1>
             <p>Designing creative digital experiences</p>
@@ -32,49 +33,53 @@
         <div id="about" class="hero-content hidden">
             <h1>About Me</h1>
             <p>I'm Aditya Sangana, a passionate developer specializing in creative and intuitive digital experiences. I WILL BE THE GOAT</p>
+            <p>I'm Aditya Sangana, a passionate developer specializing in creative and intuitive digital experiences. I WILL BE ONE OF THE GOATS</p>
 
-            <!-- Education Section -->
-            <div class="resume-section">
-                <h2>Education</h2>
-                <button class="run-btn" onclick="runSkillsScript('education')">Run ./education.py</button>
-                <div id="education-content" class="resume-content hidden">
-                    <h3>Washington University in St. Louis</h3>
-                    <p>Bachelor of Science in Computer Science <br> August 2020 - May 2024</p>
+            <!-- Resume Container -->
+            <div class="resume-container">
+                <!-- Education Section -->
+                <div class="resume-section">
+                    <h2>Education</h2>
+                    <button class="run-btn" onclick="runSkillsScript('education')">Run ./education.py</button>
+                    <div id="education-content" class="resume-content hidden">
+                        <h3>Washington University in St. Louis</h3>
+                        <p>Bachelor of Science in Computer Science<br>August 2020 - May 2024</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Experience Section -->
-            <div class="resume-section">
-                <h2>Experience</h2>
-                <button class="run-btn" onclick="runSkillsScript('experience')">Run ./experience.py</button>
-                <div id="experience-content" class="resume-content hidden">
-                    <h3>Software Engineering Intern - ABC Corp</h3>
-                    <p>May 2023 - August 2023</p>
-                    <ul>
-                        <li>Developed and optimized features for a web-based platform using React.js and Node.js.</li>
-                        <li>Improved performance by 30% by optimizing database queries and API calls.</li>
-                    </ul>
+                <!-- Experience Section -->
+                <div class="resume-section">
+                    <h2>Experience</h2>
+                    <button class="run-btn" onclick="runSkillsScript('experience')">Run ./experience.py</button>
+                    <div id="experience-content" class="resume-content hidden">
+                        <h3>Software Engineering Intern - ABC Corp</h3>
+                        <p>May 2023 - August 2023</p>
+                        <ul>
+                            <li>Developed and optimized features for a web-based platform using React.js and Node.js.</li>
+                            <li>Improved performance by 30% by optimizing database queries and API calls.</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Skills Section -->
-            <div class="resume-section">
-                <h2>Skills</h2>
-                <button class="run-btn" onclick="runSkillsScript('skills')">Run ./skills.py</button>
-                <div id="skills-content" class="resume-content hidden">
-                    <p>JavaScript, Python, C++, React.js, Node.js, HTML, CSS, SQL, AWS, Git, Scapy</p>
+                <!-- Skills Section -->
+                <div class="resume-section">
+                    <h2>Skills</h2>
+                    <button class="run-btn" onclick="runSkillsScript('skills')">Run ./skills.py</button>
+                    <div id="skills-content" class="resume-content hidden">
+                        <p>JavaScript, Python, C++, React.js, Node.js, HTML, CSS, SQL, AWS, Git, Scapy</p>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Projects Section -->
-            <div class="resume-section">
-                <h2>Projects</h2>
-                <button class="run-btn" onclick="runSkillsScript('projects')">Run ./projects.py</button>
-                <div id="projects-content" class="resume-content hidden">
-                    <h3>Stock Price Prediction</h3>
-                    <p>Used machine learning algorithms to predict stock prices based on historical data.</p>
-                    <h3>Interactive Web Design</h3>
-                    <p>Created a responsive web portfolio with interactive features using modern web technologies.</p>
+                <!-- Projects Section -->
+                <div class="resume-section">
+                    <h2>Projects</h2>
+                    <button class="run-btn" onclick="runSkillsScript('about-projects')">Run ./projects.py</button>
+                    <div id="about-projects-content" class="resume-content hidden">
+                        <h3>Stock Price Prediction</h3>
+                        <p>Used machine learning algorithms to predict stock prices based on historical data.</p>
+                        <h3>Interactive Web Design</h3>
+                        <p>Created a responsive web portfolio with interactive features using modern web technologies.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,13 +130,13 @@
             });
         }
 
-        // Function to show the content when the button is clicked
+        // Function to toggle content visibility when "Run" button is clicked
         function runSkillsScript(sectionId) {
             const content = document.getElementById(`${sectionId}-content`);
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden'); // Show content
+            if (content) { // Check if the element exists
+                content.classList.toggle('hidden'); // Toggle visibility
             } else {
-                content.classList.add('hidden'); // Toggle content visibility if already shown
+                console.error(`Element with id "${sectionId}-content" not found.`);
             }
         }
 
