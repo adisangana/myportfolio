@@ -1,145 +1,61 @@
-/* General reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Helvetica Neue', sans-serif;
-    color: #333;
-    background-color: #f7f7f7;
+.projects-grid {
     display: flex;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Updated Sidebar Styling */
-.side-nav {
-    background-color: transparent; /* No background color */
-    width: 15%; /* Narrower sidebar for a modern look */
-    min-width: 200px;
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: 20px 10px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    z-index: 10; /* Ensures sidebar stays above the canvas */
+    gap: 20px;
+    padding: 20px;
 }
 
-/* Sidebar List */
-.side-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-/* Sidebar Items */
-.side-nav ul li {
-    margin: 20px 0;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Sidebar Links */
-.side-nav ul li a {
-    color: #fff; /* White text to make it visible on the dark background */
-    text-decoration: none;
-    border-bottom: 2px solid #1abc9c; /* Underline with teal color */
-    padding-bottom: 4px;
-    transition: color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Hover effect */
-.side-nav ul li a:hover {
-    color: #1abc9c; /* Teal hover color */
-    border-bottom-color: #1abc9c; /* Match underline color on hover */
-}
-
-/* Main Content Styling */
-.hero {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.project-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); /* Adds a frosted glass effect */
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    color: #fff;
     text-align: center;
-    background-color: transparent;
-    padding: 0 20px;
-    margin-left: 15%; /* Offset the content by the sidebar width */
-    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hero-content {
-    display: none;
-}
-
-.hero-content.active {
-    display: block; /* Show the active section */
-}
-
-.hero-content.hidden {
-    display: none; /* Hide the inactive sections */
-}
-
-.hero-content h1 {
-    font-size: 72px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: white; /* Text color contrast with dark background */
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Subtle text shadow */
-}
-
-.hero-content p {
+.project-card h2 {
     font-size: 24px;
-    color: #e0e0e0;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    color: #1abc9c; /* Accent color for the project title */
 }
 
-.btn {
-    background-color: #1abc9c; /* Teal button */
-    color: white;
-    padding: 15px 30px;
-    border-radius: 25px;
+.project-card p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.project-card .btn {
+    background-color: #1abc9c;
+    padding: 10px 20px;
+    border-radius: 20px;
     text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: #fff;
+    transition: background-color 0.3s ease;
 }
 
-.btn:hover {
+.project-card .btn:hover {
     background-color: #16a085;
-    transform: scale(1.05);
 }
 
-/* Background Animation Canvas */
-#sketch-holder {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Ensures animation stays behind main content */
+.project-card:hover {
+    transform: translateY(-10px); /* Lift effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
 }
 
-/* Responsive Design for Smaller Screens */
+/* Responsive Design for Projects */
 @media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 48px;
+    .projects-grid {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .hero-content p {
-        font-size: 20px;
-    }
-
-    .side-nav {
-        width: 30%;
-        min-width: 150px;
-    }
-
-    .hero {
-        margin-left: 30%; /* Adjust margin for smaller sidebar */
+    .project-card {
+        width: 100%;
+        max-width: 500px;
     }
 }
