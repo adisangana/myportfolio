@@ -74,8 +74,14 @@ body {
 }
 
 .hero-content {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Take full viewport height */
+    text-align: center;
 }
+
 
 .hero-content.active {
     display: block; /* Show the active section */
@@ -134,6 +140,10 @@ body {
         font-size: 20px;
     }
 
+    .resume-section {
+        max-height: 300px; /* Reduce height for mobile screens */
+    }
+
     .side-nav {
         width: 30%;
         min-width: 150px;
@@ -143,6 +153,7 @@ body {
         margin-left: 30%; /* Adjust margin for smaller sidebar */
     }
 }
+
 .projects-grid {
     display: flex;
     flex-wrap: wrap;
@@ -190,14 +201,17 @@ body {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5); /* More shadow on hover */
 }
 .resume-section {
+    max-height: 400px; /* Adjust to whatever height you prefer */
+    overflow-y: auto;
     margin-top: 30px;
-    background-color: rgba(255, 255, 255, 0.05); /* Light background */
+    background-color: rgba(255, 255, 255, 0.05);
     padding: 20px;
     border-radius: 10px;
     text-align: left;
     color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
 
 .resume-section h2 {
     font-size: 28px;
@@ -231,6 +245,7 @@ body {
 }
 
 .run-btn {
+    margin-top: 15px; /* Space between button and section header */
     background-color: #2c3e50;
     color: white;
     padding: 10px 20px;
