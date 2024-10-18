@@ -24,6 +24,16 @@ function draw() {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
+// Function to show the content when the button is clicked
+function runSkillsScript(sectionId) {
+    const content = document.getElementById(`${sectionId}-content`);
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden'); // Show content
+    } else {
+        content.classList.add('hidden'); // Toggle content visibility if already shown
+    }
+}
+
 
 // Particle class
 class Particle {

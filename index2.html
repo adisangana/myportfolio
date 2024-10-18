@@ -29,10 +29,57 @@
         </div>
 
         <!-- About Section -->
-        <div id="about" class="hero-content hidden">
-            <h1>About Me</h1>
-            <p>I'm Aditya Sangana, a passionate developer who specializes in designing creative and intuitive digital experiences.</p>
+<!-- About Section with Resume content creatively displayed -->
+<div id="about" class="hero-content hidden">
+    <h1>About Me</h1>
+    <p>I'm Aditya Sangana, a passionate developer specializing in designing creative and intuitive digital experiences.</p>
+
+    <!-- Education Section with Run Button -->
+    <div class="resume-section">
+        <h2>Education</h2>
+        <button class="run-btn" onclick="runSkillsScript('education')">Run ./education.py</button>
+        <div id="education-content" class="resume-content hidden">
+            <h3>Washington University in St. Louis</h3>
+            <p>Bachelor of Science in Computer Science <br> August 2020 - May 2024</p>
         </div>
+    </div>
+
+    <!-- Experience Section with Run Button -->
+    <div class="resume-section">
+        <h2>Experience</h2>
+        <button class="run-btn" onclick="runSkillsScript('experience')">Run ./experience.py</button>
+        <div id="experience-content" class="resume-content hidden">
+            <h3>Software Engineering Intern - ABC Corp</h3>
+            <p>May 2023 - August 2023</p>
+            <ul>
+                <li>Developed and optimized features for a web-based platform using React.js and Node.js.</li>
+                <li>Improved performance by 30% by optimizing database queries and API calls.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Skills Section with Run Button -->
+    <div class="resume-section">
+        <h2>Skills</h2>
+        <button class="run-btn" onclick="runSkillsScript('skills')">Run ./skills.py</button>
+        <div id="skills-content" class="resume-content hidden">
+            <p>JavaScript, Python, C++, React.js, Node.js, HTML, CSS, SQL, AWS, Git, Scapy</p>
+        </div>
+    </div>
+
+    <!-- Projects Section with Run Button -->
+    <div class="resume-section">
+        <h2>Projects</h2>
+        <button class="run-btn" onclick="runSkillsScript('projects')">Run ./projects.py</button>
+        <div id="projects-content" class="resume-content hidden">
+            <h3>Stock Price Prediction</h3>
+            <p>Used machine learning algorithms to predict stock prices based on historical data.</p>
+            <h3>Interactive Web Design</h3>
+            <p>Created a responsive web portfolio with interactive features using modern web technologies.</p>
+        </div>
+    </div>
+</div>
+
 
         <!-- Projects Section (with project cards) -->
         <div id="projects" class="hero-content hidden">
