@@ -15,6 +15,14 @@ function setup() {
     if (themeSwitcher) {
         themeSwitcher.addEventListener("click", toggleTheme);
     }
+
+    // Event listener for the Skills section
+    document.querySelectorAll(".progress-bar .progress").forEach((progressBar) => {
+        progressBar.style.width = "0"; // Start with zero width
+    });
+
+    // Trigger progress bar animation when Skills section is shown
+    document.querySelector("#about").addEventListener("transitionstart", animateProgressBars);
 }
 
 function draw() {
@@ -79,4 +87,12 @@ function toggleTheme() {
     // Update body background and text color
     document.body.style.backgroundColor = darkMode ? "#000" : "#fff";
     document.body.style.color = darkMode ? "#fff" : "#000";
+}
+
+// Animate progress bars
+function animateProgressBars() {
+    document.querySelectorAll(".progress-bar .progress").forEach((progressBar) => {
+        const targetWidth = progressBar.getAttribute("data-progress");
+        progressBar.style.width = targetWidth; // Set to target width
+    });
 }

@@ -240,6 +240,39 @@ body {
     transform: scale(1.05);
 }
 
+/* Progress Bar Styling */
+.progress-bar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.progress-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.progress-bar {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    background-color: #1abc9c;
+    color: white;
+    height: 100%;
+    border-radius: 10px;
+    text-align: right;
+    padding-right: 10px;
+    line-height: 20px;
+    font-size: 14px;
+    transition: width 0.5s ease-in-out;
+}
 
 /* Run Button Styling */
 .run-btn {
