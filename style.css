@@ -240,7 +240,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Progress Bar Group Styling */
+/* Progress Bar Styling */
 .progress-bar-group {
     display: flex;
     flex-direction: column;
@@ -251,7 +251,6 @@ body {
     margin-right: auto;
 }
 
-/* Progress Bar Items */
 .progress-bar-item {
     display: flex;
     flex-direction: column;
@@ -265,32 +264,29 @@ body {
     text-align: left; /* Align text to the left */
 }
 
-/* Progress Bar Container */
 .progress-bar {
-    background-color: rgba(255, 255, 255, 0.2); /* Light background for the bar */
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     height: 20px;
     overflow: hidden;
     position: relative;
 }
 
-/* Progress Bar Fill */
 .progress {
-    background-color: #1abc9c; /* Green progress bar */
+    background-color: #1abc9c;
     color: white;
     height: 100%;
     border-radius: 5px;
     text-align: right;
-    padding-right: 10px; /* Space for percentage text */
+    padding-right: 10px;
     line-height: 20px;
     font-size: 14px;
-    transition: width 1s ease-in-out; /* Smooth animation for width */
-    width: 0; /* Start with 0 width, updated dynamically */
+    transition: width 1s ease-in-out; /* Smooth animation */
+    width: 0; /* Start hidden */
 }
 
-/* Hover Effect */
 .progress-bar-item:hover .progress {
-    background-color: #16a085; /* Slightly darker green when hovered */
+    background-color: #16a085; /* Change color on hover */
 }
 
 /* Responsive Design for Progress Bars */
@@ -300,10 +296,9 @@ body {
     }
 
     .progress-bar-item p {
-        font-size: 14px; /* Smaller font size for mobile */
+        font-size: 14px; /* Smaller font for mobile */
     }
 }
-
 
 
 /* Run Button Styling */

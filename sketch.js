@@ -3,7 +3,7 @@ let darkMode = true; // Initialize in dark mode
 
 function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
-    canvas.parent("sketch-holder");
+    canvas.parent('sketch-holder');
 
     // Initialize particles
     for (let i = 0; i < 1500; i++) {
@@ -100,23 +100,29 @@ function initializeProgressBars() {
     });
 }
 
-// Handle intersection for About section visibility
+// Adjust IntersectionObserver
 function handleIntersect(entries, observer) {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             animateProgressBars(); // Trigger animation
-            observer.unobserve(entry.target); // Stop observing after animation
+            observer.disconnect(); // Stop observing after triggering
         }
     });
 }
 
-// Animate progress bars
+// Trigger Animation
 function animateProgressBars() {
     document.querySelectorAll(".progress-bar .progress").forEach((progressBar) => {
         const targetWidth = progressBar.getAttribute("data-progress"); // Get the target width
         if (targetWidth) {
-            progressBar.style.transition = "width 1s ease-in-out"; // Smooth transition
-            progressBar.style.width = targetWidth; // Set the width dynamically
+            progressBar.style.width = targetWidth; // Set the width
         }
     });
 }
+
+// Ensure the IntersectionObserver targets the "Skills" section
+const observer = new IntersectionObserver(handleIntersect, {
+    root: null,
+    threshold: 0.2, // Trigger when 20% is visible
+});
+observer.observe(document.querySelector("#about"));
