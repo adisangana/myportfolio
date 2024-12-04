@@ -246,6 +246,9 @@ body {
     flex-direction: column;
     gap: 15px;
     margin-top: 20px;
+    max-width: 800px; /* Keep progress bars aligned with the layout */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .progress-bar-item {
@@ -254,25 +257,49 @@ body {
     gap: 5px;
 }
 
+.progress-bar-item p {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 5px; /* Space between the skill name and the bar */
+    text-align: left; /* Align text to the left */
+}
+
 .progress-bar {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
     height: 20px;
     overflow: hidden;
     position: relative;
 }
 
 .progress {
-    background-color: #1abc9c;
+    background-color: #1abc9c; /* Green progress bar */
     color: white;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: right;
-    padding-right: 10px;
+    padding-right: 10px; /* Space for text */
     line-height: 20px;
     font-size: 14px;
-    transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out; /* Smooth animation */
+    width: 0; /* Start with 0 width, updated dynamically */
 }
+
+.progress-bar-item:hover .progress {
+    background-color: #16a085; /* Change color on hover */
+}
+
+/* Responsive Design for Progress Bars */
+@media (max-width: 768px) {
+    .progress-bar-group {
+        width: 90%; /* Shrink progress bar width on smaller screens */
+    }
+
+    .progress-bar-item p {
+        font-size: 14px; /* Smaller font for mobile */
+    }
+}
+
 
 /* Run Button Styling */
 .run-btn {

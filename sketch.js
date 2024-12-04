@@ -16,13 +16,17 @@ function setup() {
         themeSwitcher.addEventListener("click", toggleTheme);
     }
 
-    // Event listener for the Skills section
-    document.querySelectorAll(".progress-bar .progress").forEach((progressBar) => {
-        progressBar.style.width = "0"; // Start with zero width
-    });
+    // Initialize progress bars
+    initializeProgressBars();
 
-    // Trigger progress bar animation when Skills section is shown
-    document.querySelector("#about").addEventListener("transitionstart", animateProgressBars);
+    // Observe the About section for visibility
+    const aboutSection = document.querySelector("#about");
+    if (aboutSection) {
+        const observer = new IntersectionObserver(handleIntersect, {
+            threshold: 0.5, // Trigger when 50% of the section is visible
+        });
+        observer.observe(aboutSection);
+    }
 }
 
 function draw() {
@@ -89,10 +93,27 @@ function toggleTheme() {
     document.body.style.color = darkMode ? "#fff" : "#000";
 }
 
+// Initialize progress bars
+function initializeProgressBars() {
+    document.querySelectorAll(".progress-bar .progress").forEach((progressBar) => {
+        progressBar.style.width = "0%"; // Set initial width to 0%
+    });
+}
+
+// Handle intersection for About section visibility
+function handleIntersect(entries, observer) {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            animateProgressBars(); // Animate progress bars when About section is visible
+            observer.unobserve(entry.target); // Stop observing after animation
+        }
+    });
+}
+
 // Animate progress bars
 function animateProgressBars() {
     document.querySelectorAll(".progress-bar .progress").forEach((progressBar) => {
-        const targetWidth = progressBar.getAttribute("data-progress");
-        progressBar.style.width = targetWidth; // Set to target width
+        const targetWidth = progressBar.getAttribute("data-progress"); // Get data-progress attribute
+        progressBar.style.width = targetWidth + "%"; // Set width based on attribute
     });
 }
