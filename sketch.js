@@ -100,20 +100,29 @@ function initializeProgressBars() {
     });
 }
 
-// Handle intersection for About section visibility
+// Adjust IntersectionObserver
 function handleIntersect(entries, observer) {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            animateProgressBars(); // Animate progress bars when About section is visible
-            observer.unobserve(entry.target); // Stop observing after animation
+            animateProgressBars(); // Trigger animation
+            observer.disconnect(); // Stop observing after triggering
         }
     });
 }
 
-// Animate progress bars
+// Trigger Animation
 function animateProgressBars() {
     document.querySelectorAll(".progress-bar .progress").forEach((progressBar) => {
-        const targetWidth = progressBar.getAttribute("data-progress"); // Get data-progress attribute
-        progressBar.style.width = targetWidth + "%"; // Set width based on attribute
+        const targetWidth = progressBar.getAttribute("data-progress"); // Get the target width
+        if (targetWidth) {
+            progressBar.style.width = targetWidth; // Set the width
+        }
     });
 }
+
+// Ensure the IntersectionObserver targets the "Skills" section
+const observer = new IntersectionObserver(handleIntersect, {
+    root: null,
+    threshold: 0.2, // Trigger when 20% is visible
+});
+observer.observe(document.querySelector("#about"));
