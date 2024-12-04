@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya Sangana(GOAT) Portfolio</title>
+    <title>Aditya Sangana (GOAT) Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
@@ -20,8 +20,12 @@
         </ul>
     </nav>
 
+    <!-- Theme Switcher -->
+    <button id="theme-switcher" onclick="toggleTheme()">Switch Theme</button>
+
     <!-- Main Content Section -->
     <section id="content" class="hero">
+        <!-- Home Section -->
         <div id="home" class="hero-content active">
             <h1>Aditya Sangana</h1>
             <p>Designing creative digital experiences</p>
@@ -31,7 +35,7 @@
         <!-- About Section -->
         <div id="about" class="hero-content hidden">
             <h1>About Me</h1>
-            <p>I'm Aditya Sangana(GOAT), a passionate developer specializing in creative and intuitive digital experiences.</p>
+            <p>I'm Aditya Sangana (GOAT), a passionate developer specializing in creative and intuitive digital experiences.</p>
 
             <!-- Education Section -->
             <div class="resume-section">
@@ -57,12 +61,24 @@
                 </div>
             </div>
 
-            <!-- Skills Section -->
+            <!-- Skills Section with Progress Bars -->
             <div class="resume-section">
                 <h2>Skills</h2>
                 <button class="run-btn" onclick="runSkillsScript('skills')">Run ./skills.py</button>
                 <div id="skills-content" class="resume-content hidden">
-                    <p>JavaScript, Python, C++, React.js, Node.js, HTML, CSS, SQL, AWS, Git, Scapy</p>
+                    <div class="skill">
+                        <p>JavaScript</p>
+                        <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <p>Python</p>
+                        <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <p>React.js</p>
+                        <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                    </div>
+                    <!-- Add more skills as needed -->
                 </div>
             </div>
 
@@ -79,18 +95,15 @@
             </div>
         </div>
 
-        <!-- Projects Section (with project cards) -->
+        <!-- Projects Section -->
         <div id="projects" class="hero-content hidden">
             <h1>My Projects</h1>
             <div class="projects-grid">
-                <!-- Project Card 1 -->
                 <div class="project-card">
                     <h2>News Sharing Site</h2>
                     <p>A modern, responsive web design project focused on interactivity and user experience.</p>
                     <a href="http://ec2-18-221-136-117.us-east-2.compute.amazonaws.com/login.php" class="btn">View Project</a>
                 </div>
-
-                <!-- Project Card 2 -->
                 <div class="project-card">
                     <h2>Stock Price Analysis</h2>
                     <p>Using machine learning techniques to predict stock prices based on historical data.</p>
@@ -102,7 +115,15 @@
         <!-- Contact Section -->
         <div id="contact" class="hero-content hidden">
             <h1>Contact Me</h1>
-            <p>If you'd like to get in touch, feel free to reach out via email or through the contact form.</p>
+            <form class="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit" class="btn">Send</button>
+            </form>
         </div>
     </section>
 
@@ -125,19 +146,22 @@
             });
         }
 
-        // Function to show the content when the button is clicked
+        // Function to toggle theme
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+
+        // Function to toggle content visibility when "Run" button is clicked
         function runSkillsScript(sectionId) {
             const content = document.getElementById(`${sectionId}-content`);
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden'); // Show content
-            } else {
-                content.classList.add('hidden'); // Toggle content visibility if already shown
+            if (content) {
+                content.classList.toggle('hidden');
             }
         }
 
         // Initialize with Home section as active
         document.addEventListener("DOMContentLoaded", function() {
-            showSection('home'); // Start with Home section active
+            showSection('home');
         });
     </script>
 
