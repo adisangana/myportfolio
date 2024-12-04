@@ -1,45 +1,36 @@
 let particles = [];
+let darkMode = true; // Initialize in dark mode
 
 function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('sketch-holder');
 
-    // Initialize particle system
+    // Initialize particles
     for (let i = 0; i < 1500; i++) {
         particles.push(new Particle());
     }
 
-    // Initialize theme switcher
+    // Theme switcher event listener
     const themeSwitcher = document.getElementById("theme-switcher");
     if (themeSwitcher) {
         themeSwitcher.addEventListener("click", toggleTheme);
     }
-
-    // Initialize progress bars
-    initializeProgressBars();
 }
 
 function draw() {
-    background(0, 0, 0, 25); // Smooth blending for particle trails
+    // Background depends on theme
+    background(darkMode ? 0 : 255, 25);
 
-    // Update and display all particles
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].repelFromMouse();
-        particles[i].show();
-    }
+    // Update and display particles
+    particles.forEach((particle) => {
+        particle.update();
+        particle.repelFromMouse();
+        particle.show();
+    });
 }
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-}
-
-// Function to show the content when the button is clicked
-function runSkillsScript(sectionId) {
-    const content = document.getElementById(`${sectionId}-content`);
-    if (content) {
-        content.classList.toggle('hidden'); // Toggle visibility
-    }
 }
 
 // Particle class
@@ -48,16 +39,16 @@ class Particle {
         this.pos = createVector(random(width), random(height));
         this.vel = createVector(random(-1, 1), random(-1, 1));
         this.acc = createVector(0, 0);
-        this.size = random(2, 7); // Small particles for dust effect
+        this.size = random(2, 7);
     }
 
     update() {
         this.vel.add(this.acc);
-        this.vel.limit(2); // Smooth movement
+        this.vel.limit(2);
         this.pos.add(this.vel);
         this.acc.mult(0);
 
-        // Bounce particles at the edges
+        // Bounce off edges
         if (this.pos.x > width || this.pos.x < 0) this.vel.x *= -1;
         if (this.pos.y > height || this.pos.y < 0) this.vel.y *= -1;
     }
@@ -76,64 +67,16 @@ class Particle {
 
     show() {
         noStroke();
-        fill(255, 255, 255, 150); // White particles with transparency
+        fill(darkMode ? 255 : 0, 150); // White for dark mode, black for light mode
         ellipse(this.pos.x, this.pos.y, this.size);
     }
 }
 
-// Theme switcher functionality
+// Toggle theme
 function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle("dark-theme");
+    darkMode = !darkMode;
 
-    // Adjust particle color for dark mode
-    const isDarkTheme = body.classList.contains("dark-theme");
-    const particleColor = isDarkTheme ? [200, 200, 200, 150] : [50, 50, 50, 150];
-
-    for (let particle of particles) {
-        particle.color = particleColor;
-    }
+    // Update body background and text color
+    document.body.style.backgroundColor = darkMode ? "#000" : "#fff";
+    document.body.style.color = darkMode ? "#fff" : "#000";
 }
-
-// Initialize progress bars for skills
-function initializeProgressBars() {
-    const skills = [
-        { id: "progress-javascript", level: 90 },
-        { id: "progress-python", level: 85 },
-        { id: "progress-cpp", level: 80 },
-        { id: "progress-react", level: 75 },
-        { id: "progress-node", level: 70 },
-    ];
-
-    skills.forEach(skill => {
-        const progressBar = document.getElementById(skill.id);
-        if (progressBar) {
-            progressBar.style.width = `${skill.level}%`;
-        }
-    });
-}
-
-// Contact form submission functionality
-function handleFormSubmission(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    const name = document.getElementById("contact-name").value;
-    const email = document.getElementById("contact-email").value;
-    const message = document.getElementById("contact-message").value;
-
-    if (!name || !email || !message) {
-        alert("Please fill out all fields.");
-        return;
-    }
-
-    console.log("Form submitted:", { name, email, message });
-    alert("Thank you for reaching out! Your message has been sent.");
-}
-
-// Attach form submission handler
-document.addEventListener("DOMContentLoaded", () => {
-    const contactForm = document.getElementById("contact-form");
-    if (contactForm) {
-        contactForm.addEventListener("submit", handleFormSubmission);
-    }
-});
